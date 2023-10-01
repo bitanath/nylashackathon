@@ -1,0 +1,60 @@
+em {
+  font-style: normal;
+}
+
+.hover-effect {
+  background: linear-gradient(turquoise 0 0) left / var(--p,0) no-repeat;
+  transition: .4s,background-position 0s;
+  padding: 4px;
+}
+.hover-effect:hover {
+  --p: 100%;
+  background-position: right;
+}
+
+.grid-container {
+  /* The magic: (The direct children of this div now automagically becomes grid items) */
+  display: grid;
+
+  /* PS: Since we haven't declared how many grid columns we want, we now get one column per row by default which is what we want on mobile. We declare that we want more columns on wider screens futher down in the media-queries. */
+
+  /* Some gap between the grid columns and rows*/
+  grid-gap: 1em;
+  margin: 0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  -ms-transform: translate(-50%, -50%);
+  transform: translate(-50%, -50%);
+}
+
+.img-fluid {
+  /* Makes the size of the images in the grid fluid: */
+  width: 100%;
+  height: auto;
+  transition: transform .2s;
+}
+
+.img-fluid:hover {
+  transform: scale(1.05);
+}
+
+
+/* Grid changes on medium sized screens */
+@media screen and (min-width: 500px) {
+  
+  .grid-container {
+    /* Two equally sized colums, 1 fraction or "fr" each: */
+    grid-template-columns: repeat(2, 2fr);
+    top: 70%;
+  }
+}
+
+/* Grid changes again on larger screens */
+@media screen and (min-width: 1000px) {
+  
+  .grid-container {
+    /* Three equally sized colums, 1 fraction or "fr" each: */
+    grid-template-columns: repeat(4, 1fr);
+  }
+}
